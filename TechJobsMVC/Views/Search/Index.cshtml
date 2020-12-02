@@ -1,4 +1,7 @@
-﻿<div class="container body-content">
+﻿
+@using TechJobsMVC.Models
+
+<div class="container body-content">
 
     <h1>@ViewBag.title</h1>
 
@@ -18,7 +21,7 @@
 
         <p>
             <label for="searchTerm">Keyword:</label>
-            <input type="text" name="searchTerm" id="searchTerm" />
+            <input type="text" name="searchTerm" id="searchTerm" value="@ViewBag.term"/>
         </p>
 
         <input type="submit" value="Search" />
@@ -26,8 +29,46 @@
 
     <hr />
 
-    @{
-        //TODO #4: Loop over the search results to display all job fields.
+    @*<p>@ViewBag.farts</p>
+        <p>@ViewBag.search</p>
+        <p>@ViewBag.term</p>
+        <p>@ViewBag.jobs</p>*@
+    <h2>Jobs</h2>
+    @if (ViewBag.jobs.Count == 0)
+    {
+        <p>No Jobs Found</p>
+
+    }
+    @*//TODO #4: Loop over the search results to display all job fields.*@
+
+
+    @foreach (var job in ViewBag.jobs)
+    {
+        <table class="job-listing">
+
+            <tr>
+                <td>ID: @job.Id </td>
+            </tr>
+            <tr>
+                <td>Name: @job.Name</td>
+            </tr>
+            <tr>
+                <td>Employer: <a asp-controller="List" asp-action="Jobs" asp-route-column="employer" asp-route-value="@job.Employer">@job.Employer</a></td>
+            </tr>
+            <tr>
+                <td>Location: <a asp-controller="List" asp-action="Jobs" asp-route-column="location" asp-route-value="@job.Location">@job.Location</a></td>
+            </tr>
+            <tr>
+                <td>Position: <a asp-controller="List" asp-action="Jobs" asp-route-column="positionType" asp-route-value="@job.PositionType">@job.PositionType</a></td>
+            </tr>
+            <tr>
+                <td>Skill: <a asp-controller="List" asp-action="Jobs" asp-route-column="coreCompetency" asp-route-value="@job.CoreCompetency">@job.CoreCompetency</a></td>
+            </tr>
+
+        </table>
     }
 
+
 </div>
+
+@*<a asp-controller="List" asp-action="Jobs" asp-route-column="@category.Key" asp-route-value="@item">@item</a>*@

@@ -14,6 +14,7 @@ namespace TechJobsMVC.Controllers
     {
         internal static Dictionary<string, string> ColumnChoices = new Dictionary<string, string>()
         {
+            // @column.Value in index.cshtml
             {"all", "All"},
             {"employer", "Employer"},
             {"location", "Location"},
@@ -22,6 +23,7 @@ namespace TechJobsMVC.Controllers
         };
         internal static Dictionary<string, List<JobField>> TableChoices = new Dictionary<string, List<JobField>>()
         {
+            // category, items in category.Value
             {"employer", JobData.GetAllEmployers()},
             {"location", JobData.GetAllLocations()},
             {"positionType", JobData.GetAllPositionTypes()},
